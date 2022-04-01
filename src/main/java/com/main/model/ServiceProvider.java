@@ -1,13 +1,17 @@
 package com.main.model;
 
+
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,6 +39,10 @@ public class ServiceProvider {
 	
 	private String s_Role;
 	
+//	@Column(name="s_Picture",columnDefinition = "MEDIUMBLOB")
+//	@Lob
+//	private Blob s_Picture;
+	
 	private String s_Picture;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -47,11 +55,8 @@ public class ServiceProvider {
 	}
 
 
-	
-	
-	
 	public ServiceProvider(String s_Name, String s_Phone, String s_Address, String s_City, int s_Pincode,
-			String s_Email, String s_Password, String s_Role, String s_Picture, List<Service> service) {
+			String s_Email, String s_Password, String s_Role, String s_Picture) {
 		super();
 		this.s_Name = s_Name;
 		this.s_Phone = s_Phone;
@@ -62,8 +67,10 @@ public class ServiceProvider {
 		this.s_Password = s_Password;
 		this.s_Role = s_Role;
 		this.s_Picture = s_Picture;
-		this.service = service;
+		
 	}
+
+
 
 
 
@@ -121,12 +128,16 @@ public class ServiceProvider {
 	public void setS_Role(String s_Role) {
 		this.s_Role = s_Role;
 	}
+	
 	public String getS_Picture() {
 		return s_Picture;
 	}
+
+
 	public void setS_Picture(String s_Picture) {
 		this.s_Picture = s_Picture;
 	}
+
 
 
 	public List<Service> getService() {
