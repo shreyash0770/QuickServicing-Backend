@@ -1,10 +1,14 @@
 package com.main.controller;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,11 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 import com.main.exception.ResourceNotFoundException;
 import com.main.model.ServiceProvider;
 import com.main.repository.ServiceProviderRepository;
+import com.main.service.ServiceProviderService;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -27,6 +36,10 @@ public class ServiceProviderController {
 	
 	@Autowired
 	private ServiceProviderRepository serviceproviderrepo;
+	
+	
+	@Autowired
+	private ServiceProviderService serv;
 	
 	//--------------------------------------Service Provider-------------------------------------------
 	
@@ -38,10 +51,50 @@ public class ServiceProviderController {
 			}
 			
 			
-			//Create or Add ServiceProvider rest api
+//			//for picture
+//			@PostMapping ("/serviceProviders")
+//			public ServiceProvider createServiceProvider(@RequestBody ServiceProviderDto sprovider){
+////				System.out.println(serviceProvider.getS_Picture().getClass().getSimpleName());
+//				
+//				byte[] byteArr;
+//				Blob blob;
+//				try {
+//					byteArr = sprovider.getBase64image().getBytes();
+//					blob = new SerialBlob(byteArr);
+//					ServiceProvider provider = new ServiceProvider();
+//					provider.setS_Name(provider.getS_Name());
+//					provider.setS_Email(provider.getS_Email());
+//					provider.setS_Address(provider.getS_Address());
+//					provider.setS_Phone(provider.getS_Phone());
+//					provider.setS_Pincode(provider.getS_Pincode());
+//					provider.setS_City(provider.getS_City());
+//					provider.setS_Password(provider.getS_Password());
+//					provider.setS_Role(provider.getS_Role());
+//					provider.setS_Picture(blob);
+//					return serviceproviderrepo.save(provider);
+//
+//				
+//				} catch (SQLException e) {
+//
+//					e.printStackTrace();
+//					return null;
+//					
+//				}
+//				catch (IOException e1) {
+//
+//					e1.printStackTrace();
+//					return null;
+//					
+//				}
+//				
+//					
+//			}
+			
+			
+			// Create or Add ServiceProvider rest api
 			@PostMapping("/serviceProviders")
 			public ServiceProvider createServiceProvider(@RequestBody ServiceProvider serviceProvider){
-//				System.out.println(serviceProvider.getS_Picture().getClass().getSimpleName());
+
 				return serviceproviderrepo.save(serviceProvider);	
 			}
 			
@@ -69,8 +122,8 @@ public class ServiceProviderController {
 						provider.setS_Address(providerDetails.getS_Address());
 						provider.setS_City(providerDetails.getS_City());
 						provider.setS_Pincode(providerDetails.getS_Pincode());
-						provider.setS_Email(providerDetails.getS_Email());
-						provider.setS_Password(providerDetails.getS_Password());
+						provider.setEmail(providerDetails.getEmail());
+						provider.setPassword(providerDetails.getPassword());
 						provider.setS_Role(providerDetails.getS_Role());
 						provider.setS_Picture(providerDetails.getS_Picture());
 						
@@ -92,7 +145,17 @@ public class ServiceProviderController {
 						response.put("deleted", Boolean.TRUE);
 						return ResponseEntity.ok(response);
 					}
+					
+					
+					@PostMapping("/sloginl")
+					public ResponseEntity<ServiceProvider> loginDoctor(@RequestBody ServiceProvider doc)
+					{
+						return serv.loginUser1(doc);
+					}
+					
 			
+				
+					
 			
 
 	

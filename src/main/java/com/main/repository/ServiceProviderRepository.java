@@ -8,4 +8,5 @@ import com.main.model.ServiceProvider;
 @Repository
 public interface ServiceProviderRepository extends JpaRepository<ServiceProvider, Integer>{
 
+	public  ServiceProvider findByEmail(String email);
 }

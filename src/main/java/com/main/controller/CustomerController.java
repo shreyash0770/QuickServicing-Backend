@@ -1,6 +1,7 @@
 package com.main.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.exception.ResourceNotFoundException;
 import com.main.model.Customer;
 import com.main.repository.CustomerRepository;
+import com.main.service.CustomerService;
 
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,6 +30,9 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private CustomerService cservice;
 	
 	//-------------------------------------------Customer------------------------------------------
 	
@@ -63,12 +68,12 @@ public class CustomerController {
 						.orElseThrow(()-> new ResourceNotFoundException("Customer Not Exists with id :" +id));
 				
 				customer.setC_Name(customerDetails.getC_Name());
-				customer.setC_Email(customerDetails.getC_Email());
+				customer.setEmail(customerDetails.getEmail());
 				customer.setC_City(customerDetails.getC_City());
 				customer.setC_Address(customerDetails.getC_Address());
 				customer.setC_mobile(customerDetails.getC_mobile());
 				customer.setC_Pincode(customerDetails.getC_Pincode());
-				customer.setC_Password(customerDetails.getC_Password());
+				customer.setPassword(customerDetails.getPassword());
 
 				Customer updatedCustomer = customerRepository.save(customer);
 				return ResponseEntity.ok(updatedCustomer);
@@ -86,6 +91,15 @@ public class CustomerController {
 				Map<String, Boolean> response = new HashMap<>();
 				response.put("deleted", Boolean.TRUE);
 				return ResponseEntity.ok(response);
+			}
+			
+			
+			
+			// Login feature
+			@PostMapping("/clogin")
+			public ResponseEntity<Customer> loginCust(@RequestBody Customer cus)
+			{
+				return cservice.logincustomer(cus);
 			}
 			
 			
