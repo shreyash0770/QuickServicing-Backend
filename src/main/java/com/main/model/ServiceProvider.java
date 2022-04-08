@@ -45,7 +45,7 @@ public class ServiceProvider {
 //	@Lob
 //	private Blob s_Picture;
 	
-	private String s_Picture;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "s_Id",referencedColumnName = "s_Id")
@@ -73,7 +73,7 @@ public class ServiceProvider {
 		this.email = email;
 		this.password = password;
 		this.s_Role = s_Role;
-		this.s_Picture = s_Picture;
+		
 		
 	}
 
@@ -257,25 +257,6 @@ public class ServiceProvider {
 		this.s_Role = s_Role;
 	}
 
-
-
-
-
-
-
-	public String getS_Picture() {
-		return s_Picture;
-	}
-
-
-
-
-
-
-
-	public void setS_Picture(String s_Picture) {
-		this.s_Picture = s_Picture;
-	}
 
 
 

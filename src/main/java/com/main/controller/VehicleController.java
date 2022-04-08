@@ -15,7 +15,7 @@ import com.main.repository.VehicleRepository;
 
 @CrossOrigin(origins = "http://localhost:3000" )
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class VehicleController {
 	
 	@Autowired

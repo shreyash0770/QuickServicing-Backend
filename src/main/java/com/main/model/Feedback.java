@@ -1,12 +1,13 @@
 package com.main.model;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import net.bytebuddy.implementation.bytecode.assign.reference.GenericTypeAwareAssigner;
+
 
 @Entity
 @Table(name="feedback")

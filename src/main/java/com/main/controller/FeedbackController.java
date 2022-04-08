@@ -1,6 +1,7 @@
 package com.main.controller;
 import java.util.*;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,11 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.main.exception.ResourceNotFoundException;
-import com.main.model.Customer;
 import com.main.model.Feedback;
-import com.main.model.ShipmentService;
 import com.main.repository.FeedbackReository;
 
 @CrossOrigin(origins = "http://localhost:3000" )

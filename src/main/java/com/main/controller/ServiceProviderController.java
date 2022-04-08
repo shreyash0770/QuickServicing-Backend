@@ -125,7 +125,7 @@ public class ServiceProviderController {
 						provider.setEmail(providerDetails.getEmail());
 						provider.setPassword(providerDetails.getPassword());
 						provider.setS_Role(providerDetails.getS_Role());
-						provider.setS_Picture(providerDetails.getS_Picture());
+					
 						
 
 						ServiceProvider updatedServiceProvider = serviceproviderrepo.save(provider);
@@ -151,6 +151,16 @@ public class ServiceProviderController {
 					public ResponseEntity<ServiceProvider> loginDoctor(@RequestBody ServiceProvider doc)
 					{
 						return serv.loginUser1(doc);
+					}
+					
+					
+					@GetMapping("/serviceProviders/{s_Pincode}/{s_Role}")
+					public List<ServiceProvider>searchServiceProvider(@PathVariable(value="s_Pincode")  int s_Pincode ,@PathVariable(value="s_Role") String s_Role){
+						
+//						return serviceproviderrepo.findByS_Pincode(s_Pincode);
+						return serviceproviderrepo.findByS_Pincode(s_Pincode, s_Role);
+								
+					
 					}
 					
 			
